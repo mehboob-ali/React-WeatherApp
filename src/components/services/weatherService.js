@@ -31,14 +31,56 @@ const formatCurrentWeather=(data)=>{
 }
 
 const formatForecastWeather=(data)=>{
-    let { timezone, daily, hourly } = data;
-    daily = daily.slice(1,6).map(d=>{
+    let { city, list } = data;
+    console.log("data us :",data)
+    const timezone=city.timezone;
+    console.log("timezoneis ", timezone);
+    console.log("list is ",list);
+    
+    /////////      Daily Forecasat      /////////
+    const daily = list.map(d=>{
         return{
-        title: formatToLocalTime(d.dt, timezone, 'ccc'),
-        temp: d.temp.day,
+        title: formatToLocalTime(d.dt, timezone, 'ccc') ,
+        temp: d.main.temp,
         icon: d.weather[0].icon        
         }    
-    })
+    });
+    console.log("daily man length",daily);
+    // const firstDay=daily[7];
+    // const secondDay=daily[15];
+    // const thirdDay=daily[23];
+    // const fourthDay=daily[31];
+    // const fifthDay=daily[39];
+    // console.log("first day", firstDay)
+    // console.log("second day", secondDay)
+    // console.log("third day", thirdDay)
+    // console.log("fourth day", fourthDay)
+    // console.log("fifth day", fifthDay)
+
+    for (let i = 1; i < daily.length; i=i+8) {
+        const element = daily[i];
+        console.log("fdsnajklfndjksabkf 0",element  )
+    }
+
+        //////////////        Hourly Forecast     ///////////////
+
+    const hourly = list.slice(1,6).map(d=>{
+        return{
+            title : formatToLocalTime(d.dt, timezone, 'hh:mm a'),
+            temp : d.main.temp,
+            icon : d.weather[0].icon
+        }
+    });
+    console.log("hourly before ", hourly);
+
+    for(let i=0 ; i <=4 ; i++)
+    {
+        const element= hourly[i];
+        console.log("now now now ",element)
+
+    }
+
+    return {timezone, daily};
 }
     
 export const getFormattedWeatherData = async (searchParams)=>{
@@ -47,15 +89,14 @@ export const getFormattedWeatherData = async (searchParams)=>{
    
     const {lat, lon} = formattedCurrentWeather;
 
-    const formattedForecastWeather = await getWeatherData('onecall'
-    , {
-        lat, lon, exclude: 'current, minutely, alerts',
-        units:searchParams.units
-    }.then(formatForecastWeather)
-    )
-
-   
-    return formattedCurrentWeather;
+    const formattedForecastWeather = 
+    await getWeatherData("forecast",
+    {   
+        lat, 
+        lon, 
+        units : searchParams.units,
+    }).then(formatForecastWeather)
+    return {...formattedCurrentWeather, ...formattedForecastWeather};
 }
 const formatToLocalTime=( 
     secs, 
