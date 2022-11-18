@@ -7,11 +7,14 @@ const BASE_URL='https://api.openweathermap.org/data/2.5/';
 const getWeatherData=(infoType,searchParams)=>{
     const url=new URL(BASE_URL+'/'+infoType);
     url.search=new URLSearchParams({...searchParams, appid:API_KEY});
+    
     return fetch(url)
     .then((res)=>res.json())
     };
 
 const formatCurrentWeather=(data)=>{
+    console.log('bhfdsabhjfbhjadsbf',data); 
+
     const {
         coord : {lat,lon},
         main : {temp , feels_like , temp_min , temp_max, humidity},
@@ -31,21 +34,18 @@ const formatCurrentWeather=(data)=>{
 }
 
 const formatForecastWeather=(data)=>{
+    
     let { city, list } = data;
-    console.log("data us :",data)
     const timezone=city.timezone;
-    console.log("timezoneis ", timezone);
-    console.log("list is ",list);
     
     /////////      Daily Forecasat      /////////
-    const daily = list.map(d=>{
+    const newList = list.map(d=>{
         return{
         title: formatToLocalTime(d.dt, timezone, 'ccc') ,
         temp: d.main.temp,
         icon: d.weather[0].icon        
         }    
     });
-    console.log("daily man length",daily);
     // const firstDay=daily[7];
     // const secondDay=daily[15];
     // const thirdDay=daily[23];
@@ -56,13 +56,12 @@ const formatForecastWeather=(data)=>{
     // console.log("third day", thirdDay)
     // console.log("fourth day", fourthDay)
     // console.log("fifth day", fifthDay)
-
-    for (let i = 1; i < daily.length; i=i+8) {
-        const element = daily[i];
-        console.log("fdsnajklfndjksabkf 0",element  )
+    const daily=[];
+    for (let i = 1; i < newList.length; i=i+8) {
+        daily.push(newList[i]);
     }
 
-        //////////////        Hourly Forecast     ///////////////
+        //////////////       3 Hourly Forecast     ///////////////
 
     const hourly = list.slice(1,6).map(d=>{
         return{
@@ -71,16 +70,14 @@ const formatForecastWeather=(data)=>{
             icon : d.weather[0].icon
         }
     });
-    console.log("hourly before ", hourly);
+    // for(let i=0 ; i <=4 ; i++)
+    // {
+    //     const element= hourly[i];
+    //     console.log("now now now ",element)
 
-    for(let i=0 ; i <=4 ; i++)
-    {
-        const element= hourly[i];
-        console.log("now now now ",element)
+    // }
 
-    }
-
-    return {timezone, daily};
+    return {timezone, daily, hourly};
 }
     
 export const getFormattedWeatherData = async (searchParams)=>{
@@ -98,11 +95,13 @@ export const getFormattedWeatherData = async (searchParams)=>{
     }).then(formatForecastWeather)
     return {...formattedCurrentWeather, ...formattedForecastWeather};
 }
-const formatToLocalTime=( 
+    const formatToLocalTime=( 
     secs, 
     zone,
-    format= "cccc, dd LLL yyyy' | Local time: 'hh:mm a")=> DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
-
-
+    format= "cccc, dd LLL yyyy' | Local time: 'hh:mm a")    => 
+            DateTime.fromSeconds(secs).setZone(zone).toLocal(zone).toFormat(format)
+            
+    const iconUrlFromCode=(code)=>`http://openweathermap.org/img/wn/${code}@2x.png`;
 
 export default getFormattedWeatherData;
+export {formatToLocalTime, iconUrlFromCode};
