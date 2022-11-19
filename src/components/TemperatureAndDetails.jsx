@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react'
 import {UilTemperature,UilTear,UilWind,UilSun, UilSunset} from '@iconscout/react-unicons';
 import { formatToLocalTime, iconUrlFromCode } from './services/weatherService';
@@ -68,7 +67,6 @@ function TemperatureAndDetails({weather:{details,icon,temp,feels_like,humidity,s
   )
 }
 
-=======
 import React from 'react'
 import {UilTemperature,UilTear,UilWind,UilSun, UilSunset} from '@iconscout/react-unicons';
 import { formatToLocalTime, iconUrlFromCode } from './services/weatherService';
@@ -138,5 +136,4 @@ function TemperatureAndDetails({weather:{details,icon,temp,feels_like,humidity,s
   )
 }
 
->>>>>>> eced951c4bb12a9a24fdcbba45d77e74b2876f55
 export default TemperatureAndDetails
