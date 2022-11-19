@@ -26,11 +26,19 @@ function App() {
  //hourly title: formatToLocalTime(1666116000, timezone, 'hh:mm a'),
   //daily title: formatToLocalTime(1666116000, timezone, 'ccc'),
 
+  const formatBackgroundColor=()=>{
+    if (!weather) return "from-cyan-700 to-blue-700";
+    const threshold= units === "metric" ? 20 : 60;
+    if (weather.temp<=threshold) return "from-cyan-700 to-blue-700";
+    return "from-yellow-700 to-orange-700";
+  };
+
 
   return (
-    <div className="mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from bg-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400">
-      <TopButtons></TopButtons>
-      <Inputs></Inputs>
+    <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br 
+    h-fit shadow-xl shadow-gray-400 ${formatBackgroundColor()}`}>
+      <TopButtons setQuery={setQuery}></TopButtons>
+      <Inputs setQuery={setQuery} setUnits={setUnits} units={units} />
       {weather&&(
         <div>
         <TimeAndLocation weather={weather} ></TimeAndLocation>
@@ -43,5 +51,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

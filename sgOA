@@ -1,0 +1,29 @@
+[33mcommit 7c2d0ed5be8e634ef5b9a7e0248b5a9420ccb656[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: mehboob-ali <mehboobalishaikh50@gmail.com>
+Date:   Mon Oct 17 11:22:03 2022 +0530
+
+    date and time can be converted to local time using Luxon liabrary
+
+[33mcommit f58d7c6c028ec4119819f7a9d21c49b720d370bb[m
+Author: mehboob-ali <mehboobalishaikh50@gmail.com>
+Date:   Mon Oct 17 11:21:34 2022 +0530
+
+    weather forecast functionality added
+
+[33mcommit 6a99d78b10bc16865ea6a947db09f1d8a887177c[m
+Author: mehboob-ali <mehboobalishaikh50@gmail.com>
+Date:   Mon Oct 17 10:12:41 2022 +0530
+
+    weather fetching functionality added
+
+[33mcommit fee723a0da7d8c348c445d7fb65961a45dc4c9ce[m
+Author: mehboob-ali <mehboobalishaikh50@gmail.com>
+Date:   Sun Oct 16 13:50:38 2022 +0530
+
+    added api service file
+
+[33mcommit 10971aef11e1bd5f1c84aabeeb1967f2fd612e95[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Mehboob Ali <mehboobalishaikh50@gmail.com>
+Date:   Fri Oct 7 21:46:16 2022 +0530
+
+    Initialize project using Create React App
