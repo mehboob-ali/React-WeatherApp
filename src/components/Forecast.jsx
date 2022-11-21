@@ -17,7 +17,7 @@ function Forecast({title,items}) {
 
         {items.map((item)=>(
                         <div className='flex flex-col items-center justify-center'>
-                        <p className='font-light text-sm'>
+                        <p key={item.title} className='font-light text-sm'>
                             {item.title}
                         </p>
                         <img src={iconUrlFromCode(item.icon)}
