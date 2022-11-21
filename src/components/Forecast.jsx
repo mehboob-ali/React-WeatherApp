@@ -3,7 +3,6 @@ import { formatToLocalTime, iconUrlFromCode } from './services/weatherService';
 
 
 function Forecast({title,items}) {
-    console.log("items are",items)
   return (
     <div>
         <div className='flex items-center justify-center my-6'>
