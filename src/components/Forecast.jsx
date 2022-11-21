@@ -28,9 +28,6 @@ function Forecast({title,items}) {
         )
 
         )}
-
-
-
          </div>
     </div>
   )
