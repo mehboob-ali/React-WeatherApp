@@ -1,5 +1,9 @@
 import React from 'react'
+<<<<<<< HEAD
 import { UilSearch, UilLocationPoint } from '@iconscout/react-unicons'
+=======
+import {  UilSearch, UilLocationPoint } from '@iconscout/react-unicons'
+>>>>>>> 559444226ff7294d004a9563dc16bfbaebf4eb79
 import { useState } from 'react';
 
 
