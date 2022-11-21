@@ -13,6 +13,8 @@ const getWeatherData=(infoType,searchParams)=>{
     };
 
 const formatCurrentWeather=(data)=>{
+    console.log('bhfdsabhjfbhjadsbf',data); 
+
     const {
         coord : {lat,lon},
         main : {temp , feels_like , temp_min , temp_max, humidity},

@@ -3,6 +3,7 @@ import { formatToLocalTime, iconUrlFromCode } from './services/weatherService';
 
 
 function Forecast({title,items}) {
+    console.log("items are",items)
   return (
     <div>
         <div className='flex items-center justify-center my-6'>
@@ -17,7 +18,7 @@ function Forecast({title,items}) {
 
         {items.map((item)=>(
                         <div className='flex flex-col items-center justify-center'>
-                        <p key={item.title} className='font-light text-sm'>
+                        <p className='font-light text-sm'>
                             {item.title}
                         </p>
                         <img src={iconUrlFromCode(item.icon)}
@@ -28,6 +29,9 @@ function Forecast({title,items}) {
         )
 
         )}
+
+
+
          </div>
     </div>
   )

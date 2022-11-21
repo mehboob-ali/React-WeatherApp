@@ -20,6 +20,7 @@ function App() {
           setWeather(data);
         });
     };
+     console.log("Weather data",weather)
     fetchWeather();
   }, [query,units])
  //hourly title: formatToLocalTime(1666116000, timezone, 'hh:mm a'),
