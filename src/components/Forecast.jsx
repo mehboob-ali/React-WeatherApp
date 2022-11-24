@@ -16,10 +16,12 @@ function Forecast({title,items}) {
          text-white'>
 
         {items.map((item)=>(
-                        <div className='flex flex-col items-center justify-center'>
+                        <div className=' flex flex-col items-center justify-center'>
                         <p className='font-light text-sm'>
-                            {item.title}
+                            {item.title.slice(0,5)}
                         </p>
+                        <p className='font-light text-sm'>
+                          {item.title.slice(5,8)}</p>
                         <img src={iconUrlFromCode(item.icon)}
                         className='w-12 my-1' alt=''
                         />

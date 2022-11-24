@@ -7,9 +7,37 @@ import TemperatureAndDetails from './components/TemperatureAndDetails';
 import Forecast from './components/Forecast';
 import { getFormattedWeatherData } from './components/services/weatherService';
 import { useState,useEffect } from 'react';
+import LogoAndUnits from './components/LogoAndUnits';
 function App() {
 
-  const [query,setQuery] = useState({q: 'mumbai'});
+  const locationCheck=()=>{
+    if (navigator.geolocation)
+    {
+      navigator.geolocation.getCurrentPosition((position)=>{
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      return setQuery({lat,lon})
+      })
+
+    }
+   
+  }
+
+  const [query,setQuery] = useState(
+    ()=>{
+      if (navigator.geolocation)
+      {
+        navigator.geolocation.getCurrentPosition((position)=>{
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        return setQuery({lat,lon})
+        })
+      }
+      else{
+        return setQuery({q:'mumbai'})
+      }
+    }
+  );
   const [units,setUnits] = useState('metric');
   const [weather, setWeather] = useState(null);
 
@@ -27,15 +55,16 @@ function App() {
 
   const formatBackgroundColor=()=>{
     if (!weather) return "from-cyan-700 to-blue-700";
-    const threshold= units === "metric" ? 20 : 60;
-    if (weather.temp<=threshold) return "from-cyan-700 to-blue-700";
-    return "from-yellow-700 to-orange-700";
+    const threshold= units === "metric" ? 25 : 77;
+    if (weather.temp<=threshold) return "from-cyan-600 to-blue-700";
+    return "from-yellow-500 to-orange-700";
   };
 
 
   return (
-    <div className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br 
+    <div className={`mx-auto max-w-screen-md sm:my-4 py-5 px-8 sm:px-32 bg-gradient-to-br 
     h-fit shadow-xl shadow-gray-400 ${formatBackgroundColor()}`}>
+      <LogoAndUnits units={units} setUnits={setUnits} />
       <TopButtons setQuery={setQuery}></TopButtons>
       <Inputs setQuery={setQuery} setUnits={setUnits} units={units} />
       {weather&&(

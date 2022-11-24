@@ -21,12 +21,16 @@ function TopButtons({setQuery}) {
             id:5,
             title: 'London'
         },
+        {
+            id:6,
+            title: 'Paris'
+        },
     ]
   return (
-    <div className='flex items-center justify-around my-6'>
+    <div className='grid grid-cols-3 gap-y-4 gap-x-4 items-center justify-around my-6 '>
         {cities.map((city)=>(
             <button onClick={()=>setQuery({q:city.title})} 
-            className='text-white sm:text-white-500 lg:text-white-500 mx-1 font-medium transition ease-out hover:scale-125' key={city.id}>{city.title}
+            className='text-white border-2  rounded-lg sm:px-2 sm:text-white-500 lg:text-white-500 mx-1 font-medium transition ease-out hover:scale-125' key={city.id}>{city.title}
             </button>
         )) 
         }

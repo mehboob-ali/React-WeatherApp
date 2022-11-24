@@ -5,7 +5,7 @@ import { formatToLocalTime, iconUrlFromCode } from './services/weatherService';
 function TemperatureAndDetails({weather:{details,icon,temp,feels_like,humidity,speed,sunrise,sunset,temp_max,temp_min,timezone}}) {
   return (
     <div>
-        <div className='flex items-center justify-center py-6 text-xl
+        <div className='flex items-center justify-center py-4 text-xl
         text-cyan-300'>
             <p>{details}</p>
         </div>
@@ -15,7 +15,7 @@ function TemperatureAndDetails({weather:{details,icon,temp,feels_like,humidity,s
             className='w-20' alt="" />
             <p className='text-5xl'>{`${temp.toFixed()}°`}</p>
             
-            <div className='flex flex-col spacey-y-2'>
+            <div className='flex flex-col space-y-2'>
 
               <div className='flex font-light text-sm items-center
                justify-center'>
@@ -42,13 +42,16 @@ function TemperatureAndDetails({weather:{details,icon,temp,feels_like,humidity,s
         text-white text-sm  py-3'>
           <UilSun />
           <p className='font-light'>
-            Rise:
-            <span className='font-medium ml-1'>{formatToLocalTime(sunrise,timezone,'hh:mm a')}</span>
+            Rise:</p>
+            <p className='font-medium ml-1'>
+            {formatToLocalTime(sunrise,timezone,'hh:mm a')}
           </p>
           <UilSunset />
           <p className='font-light'>
             Set:
-            <span className='font-medium ml-1'>{formatToLocalTime(sunrise,timezone,'hh:mm a')}</span>
+            </p>
+            <p className='font-medium ml-1'>
+            {formatToLocalTime(sunrise,timezone,'hh:mm a')}
           </p>
           <UilSun />
           <p className='font-light'>

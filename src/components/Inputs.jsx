@@ -25,25 +25,23 @@ function Inputs({setQuery,setUnits,units}) {
   const handleUnitChange=(e)=>{
     const selectedUnit=e.currentTarget.name;
     if(units !==selectedUnit) setUnits(selectedUnit)
-
-
   }
   
   return (
     <div className='flex flex-row justify-center my-6 '>
-        <div className='flex flex-row -3/4 items-center justify-center space-x-4'>
+        <div className='flex flex-row -3/4 items-center justify-center space-x-4 py-4'>
             <input value={city}
             onChange={(e)=>setCity(e.currentTarget.value)}
             type='text'
             placeholder='search for city...'
-            className='text-xl font-light p-2 w-full shadow-xl focus:outline-none capitalize' 
+            className='  sm:text-xl font-light p-2 w-full shadow-xl focus:outline-none capitalize' 
             />
-            <UilSearch onClick={handleSearchClick} size='25' className="text-white cursor-pointer transition ease-out hover:scale-125"  />
+            <UilSearch onClick={handleSearchClick} size='35' className=" text-white cursor-pointer transition ease-out hover:scale-125"  />
             <UilLocationPoint 
             onClick={handleLocationClick}            
-            size='25' className="text-white cursor-pointer transition ease-out hover:scale-125"  />
+            size='35' className="text-white cursor-pointer transition ease-out hover:scale-125 "  />
         </div>
-        <div className="flex flex-row w-1/4 items-center justify-center">
+        {/* <div className="flex flex-row w-1/4 items-center justify-center">
           <button  name="metric" className="text-xl text-white font-light"
           onClick={handleUnitChange}
            >
@@ -55,7 +53,7 @@ function Inputs({setQuery,setUnits,units}) {
           >
             °F
           </button>
-        </div>
+        </div> */}
 
     </div>
   )
